@@ -1,0 +1,25 @@
+{
+  "name": "midata-plugin-vue-library",
+  "version": "1.0.0",
+  "description": "Vue.js library for MIDATA portal plugins",
+  "main": "js/midata.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MIDATAcooperative/midata-plugin-vue-library.git"
+  },
+  "keywords": [
+    "midata",
+    "vue",
+    "plugin",
+    "portal"
+  ],
+  "author": "Alexander Kreutz (alexander.kreutz@midata.coop)",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/MIDATAcooperative/midata-plugin-vue-library/issues"
+  },
+  "homepage": "https://github.com/MIDATAcooperative/midata-plugin-vue-library#readme"
+}
