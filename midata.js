@@ -44,12 +44,25 @@ var domain = function (url) {
 }
 var fhirVersion = "4.0";
 
-var host = window.location.hostname || "localhost";
-var isDebug = window._baseurl !== undefined && window._baseurl !== "http://localhost:9001";
+let baseurl = null;
+let isDebug = true;
 
-var baseurl = !window._baseurl ? ("https://" + ((host == "localhost") ? domain(document.referrer) : host)) : window._baseurl;
-if (baseurl == "https://localhost") baseurl = "https://localhost:9000";
-console.log(baseurl);
+service.setBaseurl = function(url) {
+  if (baseurl == null) {
+    baseurl = url;
+    if (baseurl == "https://localhost") baseurl = "https://localhost:9000";
+    service.baseurl = url;
+    isDebug = isDebug && url !== "http://localhost:9001";
+    if (isDebug) makeDebug();
+  }
+};
+
+if (window && window.location && window.location.hostname) {
+    let host = window.location.hostname;
+    isDebug = false;
+    service.setBaseurl("https://" + ((host == "localhost") ? domain(document.referrer) : host));
+} 
+
 var debug = function (name, fkt) {
     return function () {
         console.log("call", name, [].slice.apply(arguments));
@@ -271,9 +284,7 @@ service.errorMsg = function(err) {
    } else return ""+err;
 };
 
-service.baseurl = baseurl;
-
-if (isDebug) {   
+function makeDebug() {
     service.getSummary = debug("getSummary", service.getSummary);
     service.getConfig = debug("getConfig", service.getConfig);
     service.getOAuthParams = debug("getOAuthParams", service.getOAuthParams);
