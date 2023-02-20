@@ -57,7 +57,7 @@ service.setBaseurl = function(url) {
   }
 };
 
-if (window && window.location && window.location.hostname) {
+if (typeof window !== "undefined" && window && window.location && window.location.hostname) {
     let host = window.location.hostname;
     isDebug = false;
     service.setBaseurl("https://" + ((host == "localhost") ? domain(document.referrer) : host));
