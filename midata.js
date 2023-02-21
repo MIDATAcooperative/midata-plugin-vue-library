@@ -57,6 +57,7 @@ service.setBaseurl = function(url) {
   }
 };
 
+// New check
 if (typeof window !== "undefined" && window && window.location && window.location.hostname) {
     let host = window.location.hostname;
     isDebug = false;
