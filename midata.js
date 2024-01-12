@@ -279,10 +279,13 @@ service.fhirTransaction = function (bundle) {
 };
 
 service.errorMsg = function(err) {
+   console.log(err.toJSON());
    let r = err.response;
    if (r) {
       if (r.data && r.data.issue && r.data.issue.length) return r.data.issue[0].diagnostics;
-   } else return ""+err;
+   } 
+   if (err.message) return err.message;
+   return JSON.stringify(err);
 };
 
 function makeDebug() {
